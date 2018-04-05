@@ -1,3 +1,9 @@
+(defn get-prompt
+  [ns]
+  (str "\u001B[35m[\u001B[34m"
+       ns
+       "\u001B[35m]\u001B[33m λ\u001B[m=> "))
+
 (defproject gov.nasa.earthdata/cmr-client "0.3.0-SNAPSHOT"
   :description "A Clojure(Script) Client for NASA's Common Metadata Repository"
   :url "https://github.com/cmr-exchange/cmr-client"
@@ -28,12 +34,14 @@
       :plugins [
         [lein-cljsbuild "1.1.7"]
         [lein-figwheel "0.5.15"]
-        [lein-shell "0.5.0"]]
+        [lein-shell "0.5.0"]
+        [venantius/ultra "0.5.2"]]
       :resource-paths ["dev-resources" "test/data" "test/clj"]
       :source-paths ["src/clj" "src/cljc" "test/clj" "dev-resources/src"]
       :test-paths ["test/clj"]
       :repl-options {
-        :init-ns cmr.client.dev}}
+        :init-ns cmr.client.dev
+        :prompt ~get-prompt}}
     :test {
       :resource-paths ["test/data"]
       :source-paths ["test/clj"]
@@ -98,8 +106,9 @@
          :optimizations :simple
          :output-to "resources/public/js/cmr_client.js"}}]}
   :aliases {
-    "repl"
-      ["with-profile" "+dev" "repl"]
+    "repl" ["do"
+      ["clean"]
+      ["with-profile" "+dev" "repl"]]
     "build-cljs-dev"
       ^{:doc "Build just the dev version of the ClojureScript code"}
       ["cljsbuild" "once" "cmr-dev"]
