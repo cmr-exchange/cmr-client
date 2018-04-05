@@ -11,4 +11,5 @@
   (^:export get-permissions
    [this http-options]
    [this query-params http-options]
-   "Not yet implemented."))
+   "Check the permissions granted to a specific user or user type on specific
+   concepts or system objects."))

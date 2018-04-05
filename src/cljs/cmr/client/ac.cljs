@@ -19,9 +19,9 @@
 
 (import-vars
   [cmr.client.base.protocol
-    get-url
     get-token
-    get-token-header]
+    get-token-header
+    get-url]
   [cmr.client.ac.protocol
     get-acls
     get-groups

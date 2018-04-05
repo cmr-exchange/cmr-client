@@ -47,6 +47,7 @@
   [response]
   (let [content-type (get-in response [:headers "Content-Type"])]
     (cond
+      (nil? content-type) :json
       (string/includes? content-type "json") :json
       (string/includes? content-type "xml") :xml
       :else :unsupported)))

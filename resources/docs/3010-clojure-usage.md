@@ -136,3 +136,37 @@ curl -XPOST -i \
   -H "Echo-Token: mock-echo-system-token" \
   http://localhost:3003/variables/V1200000117-GES_DISC/associations \
   -d '[{"concept_id": "C1200000100-GES_DISC"}]'
+
+For example usage of the Access Control service, we'll use a client that
+defines it's default endpoint and token ahead of time, so we don't have to
+pass them in every call:
+
+```clj
+(def ac-client (ac/create-client {:endpoint :sit :token (slurp "path/to/tokens/sit")}))
+```
+
+To check if and what ingest management permissions are granted:
+
+```clj
+(-> ac-client
+    (ac/get-permissions
+     {:user_id "my_urs_username"
+      :system_object "INGEST_MANAGEMENT_ACL"} {})
+    :body)
+```
+```clj
+{:INGEST_MANAGEMENT_ACL ["read" "update"]}
+```
+
+To see what permissions are granted for a particular concept-id:
+
+```clj
+(-> ac-client
+    (ac/get-permissions
+     {:user_id "my_urs_username"
+      :concept_id "C1200187767-EDF_OPS"} {})
+    :body)
+```
+```clj
+{:C1200187767-EDF_OPS ["read" "update" "delete" "order"]}
+```
