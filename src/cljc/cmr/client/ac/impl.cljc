@@ -15,7 +15,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defrecord CMRAccessControlClientData [
+  deployment
   endpoint
+  host
   token
   options
   http-client])

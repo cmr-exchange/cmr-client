@@ -101,4 +101,25 @@
                :accept accept-content-type}))
 (or (pprint (:errors results)) (pprint results))
 </code></pre>
-<p>curl -XPOST -i \  -H “Content-Type: application/json” \  -H “Echo-Token: mock-echo-system-token” \  <a href="http://localhost:3003/variables/V1200000117-GES_DISC/associations">http://localhost:3003/variables/V1200000117-GES_DISC/associations</a> \  -d ‘[{“concept_id”: “C1200000100-GES_DISC”}]’</p></div></div></div></body></html>
+<p>curl -XPOST -i \  -H “Content-Type: application/json” \  -H “Echo-Token: mock-echo-system-token” \  <a href="http://localhost:3003/variables/V1200000117-GES_DISC/associations">http://localhost:3003/variables/V1200000117-GES_DISC/associations</a> \  -d ‘[{“concept_id”: “C1200000100-GES_DISC”}]’</p>
+<p>For example usage of the Access Control service, we’ll use a client that defines it’s default endpoint and token ahead of time, so we don’t have to pass them in every call:</p>
+<pre><code class="clj">(def ac-client (ac/create-client {:endpoint :sit :token (slurp "path/to/tokens/sit")}))
+</code></pre>
+<p>To check if and what ingest management permissions are granted:</p>
+<pre><code class="clj">(-&gt; ac-client
+    (ac/get-permissions
+     {:user_id "my_urs_username"
+      :system_object "INGEST_MANAGEMENT_ACL"} {})
+    :body)
+</code></pre>
+<pre><code class="clj">{:INGEST_MANAGEMENT_ACL ["read" "update"]}
+</code></pre>
+<p>To see what permissions are granted for a particular concept-id:</p>
+<pre><code class="clj">(-&gt; ac-client
+    (ac/get-permissions
+     {:user_id "my_urs_username"
+      :concept_id "C1200187767-EDF_OPS"} {})
+    :body)
+</code></pre>
+<pre><code class="clj">{:C1200187767-EDF_OPS ["read" "update" "delete" "order"]}
+</code></pre></div></div></div></body></html>

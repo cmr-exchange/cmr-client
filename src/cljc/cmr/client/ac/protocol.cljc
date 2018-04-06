@@ -12,4 +12,10 @@
    [this http-options]
    [this query-params http-options]
    "Check the permissions granted to a specific user or user type on specific
-   concepts or system objects."))
+   concepts or system objects.")
+  (^:export get-token-info
+   [this query-params http-options]
+   "Given a token, return the token's associated data.")
+  (^:export token->user
+   [this query-params http-options]
+   "Given a token, return the associated user."))

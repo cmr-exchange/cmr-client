@@ -15,7 +15,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defrecord CMRIngestClientData [
+  deployment
   endpoint
+  host
   token
   options
   http-client])

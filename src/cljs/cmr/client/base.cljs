@@ -18,6 +18,8 @@
 
 (import-vars
   [cmr.client.base.protocol
+    get-deployment
+    get-host
     get-url
     get-token
     get-token-header])
@@ -28,6 +30,12 @@
 
 (extend-type CMRClientData
   CMRClientAPI
+  (get-deployment
+    [this]
+    (base/get-deployment this))
+  (get-host
+    [this]
+    (base/get-host this))
   (get-url
     [this segment]
     (base/get-url this segment))

@@ -17,8 +17,18 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defrecord CMRClientData [
+  deployment
   endpoint
+  host
   token])
+
+(defn get-deployment
+  [this]
+  (:deployment this))
+
+(defn get-host
+  [this]
+  (:host this))
 
 (defn get-url
   [this segment]
@@ -35,7 +45,9 @@
 
 #?(:clj
 (def client-behaviour
-  {:get-url get-url
+  {:get-deployment get-deployment
+   :get-host get-host
+   :get-url get-url
    :get-token get-token
    :get-token-header get-token-header}))
 

@@ -18,6 +18,13 @@
         (get-in const/endpoints)
         (str (environment-type const/hosts)))))
 
+(defn get-default-deployment
+  "Get the default endpoint; if the client options specify an endpoint, then
+  use that one."
+  [options]
+  (or (:endpoint options)
+      :local))
+
 (defn get-default-endpoint
   "Get the default endpoint; if the client options specify an endpoint, then
   use that one."
@@ -32,7 +39,7 @@
   (:token options))
 
 (defn parse-endpoint
-  "Given a string or a deployment environment and a service key, retur the
+  "Given a string or a deployment environment and a service key, return the
   service endpoint."
   ([endpoint]
    (parse-endpoint endpoint nil))
@@ -51,7 +58,8 @@
       (recur))))
 
 (defn create-service-client-constructor
-  "This is a utility function that returns a function for creating clients of
+  "This is a utility function that returns a function (yes, a _factory_ ...
+  sheesh) for creating clients of
   a particular type, e.g., ingest, search, or access-control clients.
 
   The arguments details are as follows:
@@ -81,19 +89,23 @@
     ([options]
      (client-constructor-var options {}))
     ([options http-options]
-     (let [endpoint (get-default-endpoint options service-type)
+     (let [deployment (get-default-deployment options)
+           endpoint (get-default-endpoint options service-type)
            token (get-default-token options)
            client-options (options-fn options)
            http-client (http-client-constructor client-options http-options)]
        (client-data-constructor
+         deployment
          (parse-endpoint endpoint service-type)
+         (deployment const/hosts)
          token
          client-options
          http-client)))))
 
 (defn create-http-client-constructor
-  "This is a utility function that returns a function for creating clients of
-  a particular type, e.g., ingest, search, or access-control clients.
+  "This is a utility function that returns a function (yes, this is also a
+  _factory_) for creating clients of a particular type, e.g., ingest, search,
+  or access-control clients.
 
   The arguments details are as follows:
 

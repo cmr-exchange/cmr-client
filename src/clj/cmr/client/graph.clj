@@ -17,6 +17,8 @@
 
 (import-vars
   [cmr.client.base.protocol
+    get-deployment
+    get-host
     get-token
     get-token-header
     get-url]

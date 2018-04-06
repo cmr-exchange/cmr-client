@@ -5,7 +5,8 @@
    [cmr.client.http.impl :as impl]
    [cmr.client.http.protocol :as api]
    [potemkin :refer [import-vars]])
-  (:import (cmr.client.http.impl HTTPClientData))
+  (:import
+   (cmr.client.http.impl HTTPClientData))
   (:refer-clojure :exclude [get]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
