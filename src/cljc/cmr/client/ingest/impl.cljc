@@ -23,7 +23,7 @@
   http-client])
 
 (defn get-providers
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   [this]
   (-> this
       :http-client

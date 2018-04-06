@@ -36,7 +36,7 @@
   http-client])
 
 (defn get-acls
-  "See protocol defintion for docstring."
+  "See protocol  for docstring."
   ([this http-options]
    (get-acls this {} http-options))
   ([this query-params http-options]
@@ -48,7 +48,7 @@
                   (base/get-token-header this))))))
 
 (defn get-groups
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this http-options]
    (get-groups this {} http-options))
   ([this query-params http-options]
@@ -60,7 +60,7 @@
                   (base/get-token-header this))))))
 
 (defn get-health
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this]
    (get-health this {}))
   ([this http-options]
@@ -70,7 +70,7 @@
                  http-options))))
 
 (defn get-permissions
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this http-options]
    (get-permissions this {} http-options))
   ([this query-params http-options]
@@ -82,7 +82,7 @@
                   (base/get-token-header this))))))
 
 (defn get-token-info
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this]
    (get-token-info this {}))
   ([this http-options]
@@ -99,7 +99,7 @@
                    (base/get-token-header this))))))
 
 (defn token->user
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this]
    (token->user this {}))
   ([this http-options]

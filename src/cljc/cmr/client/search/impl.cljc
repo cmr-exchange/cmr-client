@@ -39,7 +39,7 @@
                                            (base/get-token-header this))))))
 
 (defn get-collections
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this]
    (get-collections this {} {}))
   ([this http-options]
@@ -53,7 +53,7 @@
                      (http-util/merge-header (base/get-token-header this)))))))
 
 (defn get-concept
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this concept-id]
     (get-concept this concept-id {}))
   ([this concept-id http-options]
@@ -72,7 +72,7 @@
                                          (base/get-token-header this))))))
 
 (defn get-granules
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this http-options]
    (get-granules this {} http-options))
   ([this query-params http-options]
@@ -82,7 +82,7 @@
                  (http-util/query+options query-params http-options)))))
 
 (defn get-humanizers
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this]
    (get-humanizers this {}))
   ([this http-options]
@@ -92,7 +92,7 @@
                  http-options))))
 
 (defn get-tag
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this tag-id http-options]
    (get-tag this tag-id {} http-options))
   ([this tag-id query-params http-options]
@@ -102,7 +102,7 @@
                  (http-util/query+options query-params http-options)))))
 
 (defn get-tags
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this http-options]
    (get-tags this {} http-options))
   ([this query-params http-options]
@@ -112,7 +112,7 @@
                  (http-util/query+options query-params http-options)))))
 
 (defn get-tiles
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this http-options]
    (get-tiles this {} http-options))
   ([this query-params http-options]
@@ -122,7 +122,7 @@
                  (http-util/query+options query-params http-options)))))
 
 (defn get-variables
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this]
    (get-variables this {}))
   ([this http-options]

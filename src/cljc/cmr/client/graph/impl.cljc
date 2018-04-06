@@ -23,7 +23,7 @@
   http-client])
 
 (defn get-movie
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this query-str]
    (get-movie this query-str {}))
   ([this query-str http-options]
@@ -34,7 +34,7 @@
                    http-options (base/get-token-header this))))))
 
 (defn get-collection-url-relation
-  "See protocol defintion for docstring."
+  "See protocol definition for docstring."
   ([this concept-id]
    (get-collection-url-relation this concept-id {}))
   ([this concept-id http-options]
