@@ -28,7 +28,9 @@
     get-acls
     get-groups
     get-health
-    get-permissions])
+    get-permissions
+    get-token-info
+    token->user])
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Implementation   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -36,15 +38,21 @@
 
 (extend-type CMRAccessControlClientData
   CMRClientAPI
-  (get-url
-    [this segment]
-    (base-impl/get-url this segment))
+  (get-deployment
+    [this]
+    (base-impl/get-deployment this))
+  (get-host
+    [this]
+    (base-impl/get-host this))
   (get-token
     [this]
     (base/get-token this))
   (get-token-header
     [this]
-    (base/get-token-header this)))
+    (base/get-token-header this))
+  (get-url
+    [this segment]
+    (base-impl/get-url this segment)))
 
 (extend-type CMRAccessControlClientData
   CMRAccessControlAPI
@@ -67,7 +75,17 @@
     ([this http-options]
      (get-permissions this {} http-options))
     ([this query-params http-options]
-     (ac/get-permissions this query-params http-options))))
+     (ac/get-permissions this query-params http-options)))
+  (get-get-token-info
+    ([this]
+     (get-get-token-info this {}))
+    ([this http-options]
+     (ac/get-get-token-info this http-options)))
+  (token->user
+    ([this]
+     (token->user this {}))
+    ([this http-options]
+     (ac/token->user this http-options))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Constrcutor   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

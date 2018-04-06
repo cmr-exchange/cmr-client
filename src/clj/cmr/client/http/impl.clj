@@ -39,8 +39,7 @@
   "Create a list of args that can be usd with the CMR HTTP client by applying
   them."
   [client url options]
-  [url
-   (create-http-options client options)])
+  [url (create-http-options client options)])
 
 (defn parse-content-type
   "Parse the content type of the given response."
@@ -149,14 +148,15 @@
   ([this url]
     (post this url {}))
   ([this url data]
-    (put this url data {}))
+    (post this url data {}))
   ([this url data options]
-    (call this
-          :post
-          (->> {:body data}
-               (merge options)
-               (create-http-client-args this url))
-          options)))
+    (let [options (dissoc options :query-params)]
+      (call this
+            :post
+            (->> {:body data}
+                 (merge options)
+                 (create-http-client-args this url))
+            options))))
 
 (defn- delete
   ([this url]

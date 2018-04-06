@@ -36,15 +36,21 @@
 
 (extend-type CMRIngestClientData
   CMRClientAPI
-  (get-url
-    [this segment]
-    (base-impl/get-url this segment))
+  (get-deployment
+    [this]
+    (base-impl/get-deployment this))
+  (get-host
+    [this]
+    (base-impl/get-host this))
   (get-token
     [this]
     (base/get-token this))
   (get-token-header
     [this]
-    (base/get-token-header this)))
+    (base/get-token-header this))
+  (get-url
+    [this segment]
+    (base-impl/get-url this segment)))
 
 (extend-type CMRIngestClientData
   CMRIngestAPI

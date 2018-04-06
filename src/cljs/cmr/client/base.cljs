@@ -36,12 +36,12 @@
   (get-host
     [this]
     (base/get-host this))
-  (get-url
-    [this segment]
-    (base/get-url this segment))
   (get-token
     [this]
     (base/get-token this))
   (get-token-header
     [this]
-    (base/get-token-header this)))
+    (base/get-token-header this))
+  (get-url
+    [this segment]
+    (base/get-url this segment)))

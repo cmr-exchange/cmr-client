@@ -21,7 +21,7 @@
     [org.clojure/clojurescript "1.10.217"]
     [org.clojure/core.async "0.4.474"]
     [org.clojure/data.json "0.2.6"]
-    [org.clojure/data.xml "0.2.0-alpha2"]
+    [org.clojure/data.xml "0.2.0-alpha5"]
     [potemkin "0.4.4"]]
   :source-paths ["src/clj" "src/cljc"]
   :profiles {

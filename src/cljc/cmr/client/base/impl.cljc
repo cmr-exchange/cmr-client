@@ -47,9 +47,9 @@
 (def client-behaviour
   {:get-deployment get-deployment
    :get-host get-host
-   :get-url get-url
    :get-token get-token
-   :get-token-header get-token-header}))
+   :get-token-header get-token-header
+   :get-url get-url}))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Client Options   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

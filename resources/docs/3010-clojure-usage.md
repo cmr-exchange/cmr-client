@@ -170,3 +170,28 @@ To see what permissions are granted for a particular concept-id:
 ```clj
 {:C1200187767-EDF_OPS ["read" "update" "delete" "order"]}
 ```
+
+To look up the user id by token:
+```clj
+(ac/token->user ac-client)
+```
+```clj
+"my_urs_username"
+```
+
+Which means you can make the other calls, even if you don't have the user's
+id:
+
+```clj
+(-> ac-client
+    (ac/get-permissions
+     {:user_id (ac/token->user ac-client)
+      :concept_id "C1200187767-EDF_OPS"} {})
+    :body)
+```
+```clj
+{:C1200187767-EDF_OPS ["read" "update" "delete" "order"]}
+```
+
+Note, however, that this is making two separate REST calls: one to the legacy
+services endpoint, and the other to the access control endpoint.
