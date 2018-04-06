@@ -122,4 +122,19 @@
     :body)
 </code></pre>
 <pre><code class="clj">{:C1200187767-EDF_OPS ["read" "update" "delete" "order"]}
-</code></pre></div></div></div></body></html>
+</code></pre>
+<p>To look up the user id by token:</p>
+<pre><code class="clj">(ac/token-&gt;user ac-client)
+</code></pre>
+<pre><code class="clj">"my_urs_username"
+</code></pre>
+<p>Which means you can make the other calls, even if you don’t have the user’s id:</p>
+<pre><code class="clj">(-&gt; ac-client
+    (ac/get-permissions
+     {:user_id (ac/token-&gt;user ac-client)
+      :concept_id "C1200187767-EDF_OPS"} {})
+    :body)
+</code></pre>
+<pre><code class="clj">{:C1200187767-EDF_OPS ["read" "update" "delete" "order"]}
+</code></pre>
+<p>Note, however, that this is making two separate REST calls: one to the legacy services endpoint, and the other to the access control endpoint.</p></div></div></div></body></html>
